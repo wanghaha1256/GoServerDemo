@@ -1,6 +1,6 @@
 // This package contains universal function
 // such as operate file, etc.
-package pkg
+package util
 
 import (
 	"io/ioutil"

@@ -1,10 +1,21 @@
 package controllers
 
-import "github.com/gin-gonic/gin"
+import (
+	"GoServerDemo/internal/util/models"
+
+	"github.com/gin-gonic/gin"
+)
 
 type mdfile struct {
-	Title   string `title`
-	Content string `content`
+	models.Model
+
+	Title      string `json:"title"`
+	Desc       string `json:"desc"`
+	CreateOn   string `json:""`
+	CreatedBy  string `json:"created_by"`
+	ModifiedBy string `json:"modified_by"`
+
+	// TODO: 创建时间和修改时间
 }
 
 type MdController interface {
