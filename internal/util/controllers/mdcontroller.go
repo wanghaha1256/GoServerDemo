@@ -11,11 +11,8 @@ type mdfile struct {
 
 	Title      string `json:"title"`
 	Desc       string `json:"desc"`
-	CreateOn   string `json:""`
 	CreatedBy  string `json:"created_by"`
 	ModifiedBy string `json:"modified_by"`
-
-	// TODO: 创建时间和修改时间
 }
 
 type MdController interface {
@@ -34,7 +31,13 @@ type controller struct {
 }
 
 func (c *controller) GetOne(context *gin.Context) {
+	title := context.Query("title")
+	data := make(map[string]interface{})
 
+	// TODO: 从数据库中取
+
+	data["title"] = title
+	data["content"] = 
 }
 
 func (c *controller) GetList(context *gin.Context) {
