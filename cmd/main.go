@@ -1,16 +1,11 @@
 package main
 
 import (
-	"GoServerDemo/configs"
 	"GoServerDemo/internal/routers"
-	"GoServerDemo/internal/util/controllers"
 	"GoServerDemo/internal/util/settings"
-	"GoServerDemo/pkg"
 	"fmt"
 	"log"
 	"net/http"
-
-	"github.com/gin-gonic/gin"
 )
 
 func main() {
