@@ -26,17 +26,17 @@ func InitRouter() *gin.Engine {
 	// GET /md_lists
 	mdGroup.GET("/md_lists", mdController.GetList)
 
-	// GET /mds/123.md
-	mdGroup.GET("/:title", mdController.GetOne)
+	// GET /mds/1
+	mdGroup.GET("/:id", mdController.GetOne)
 
-	// PUT /mds/123.md
-	mdGroup.PUT("/:title", mdController.Update)
+	// PUT /mds/1
+	mdGroup.POST("/:id", mdController.Update)
 
 	// POST /mds/
-	mdGroup.POST("/", mdController.Create)
+	mdGroup.POST("/create", mdController.Create)
 
-	// DELETE /mds/123.md
-	mdGroup.DELETE(":title", mdController.Delete)
+	// DELETE /mds/1
+	mdGroup.DELETE(":id", mdController.Delete)
 
 	return r
 

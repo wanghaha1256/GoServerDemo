@@ -68,13 +68,13 @@ func closeDB() {
 	defer db.Close()
 }
 
-func GetMdList(pageNum int, pageSize int, maps interface{}) (files []Article) {
-	db.Where(maps).Offset(pageNum).Limit(pageSize).Find(&files)
+func GetMdList(pageNum int, pageSize int, keys interface{}, values interface{}) (files []Article) {
+	db.Where(keys, values).Offset(pageNum).Limit(pageSize).Find(&files)
 
 	return
 }
 
-func GetMdNum(maps interface{}) (count int) {
-	db.Model(&Article{}).Where(maps).Count(&count)
+func GetMdNum(keys interface{}, values interface{}) (count int) {
+	db.Model(&Article{}).Where(keys, values).Count(&count)
 	return
 }

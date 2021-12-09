@@ -5,6 +5,7 @@ import (
 	"GoServerDemo/internal/util/models"
 	"GoServerDemo/internal/util/settings"
 	"GoServerDemo/pkg"
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -44,13 +45,16 @@ func (c *controller) GetOne(context *gin.Context) {
 
 func (c *controller) GetList(context *gin.Context) {
 
-	maps := make(map[string]interface{})
+	fmt.Printf("%+v", context)
+
 	data := make(map[string]interface{})
+	keys := "title LIKE ?"
+	values := "%" + context.Query("title") + "%"
 
 	statusCode := configs.SUCCESS
 
-	data["lists"] = models.GetMdList(pkg.GetPage(context), settings.PageSize, maps)
-	data["total"] = models.GetMdNum(maps)
+	data["lists"] = models.GetMdList(pkg.GetPage(context), settings.PageSize, keys, values)
+	data["total"] = models.GetMdNum(keys, values)
 
 	context.JSON(http.StatusOK, gin.H{
 		"code": statusCode,
@@ -59,11 +63,12 @@ func (c *controller) GetList(context *gin.Context) {
 }
 
 func (c *controller) Update(context *gin.Context) {
+
 	id := com.StrTo(context.Param("id")).MustInt()
-	title := context.Query("title")
-	desc := context.Query("desc")
-	content := context.Query("content")
-	modifiedBy := context.Query("modified_by")
+	title := context.PostForm("title")
+	desc := context.PostForm("desc")
+	content := context.PostForm("content")
+	modifiedBy := context.PostForm("modified_by")
 
 	statusCode := configs.NOT_FOUND
 
@@ -85,6 +90,9 @@ func (c *controller) Update(context *gin.Context) {
 }
 
 func (c *controller) Create(context *gin.Context) {
+
+	fmt.Printf("%+v", context)
+
 	title := context.PostForm("title")
 	desc := context.PostForm("desc")
 	content := context.PostForm("content")
